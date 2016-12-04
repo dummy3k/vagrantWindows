@@ -39,10 +39,35 @@ This will setup the VM so `vagrant` can administer it:
 1. Boot the VM for the first time
 1. open an administrative command prompt
    1. `notepad prep.cmd`
-   2. paste the content from `prep.cmd` from this git repository. This will enable
+   2. paste the content from `prep.cmd` from this git repository. This will configure `WinRM` to work nicely with `vagrant`.
    3. save and run `prep.cmd`
 
    This will spew out a few errors but it did work for me.
+1. shutdown the VM. You might want to create a snapshot.
+2. Package the VM:
+    ```
+    vagrant package --base "MSEdge - Win10_preview" --output windows.box --vagrantfile BaseImage\Vagrantfile
+    ```
+    
+    `MSEdge - Win10_preview` is the name of the image in VirtualBox.
+1. Import box:
+    ```
+    vagrant box add windows.box --name win10box
+    ```
+
+Everyday life
+=============
+
+After all this work you can now easly spawn new VM:
+
+```
+    mkdir fooVM
+    cd fooVM
+    vagrant init test001
+    vagrant up
+```
+
+Have a look at the examples inside this git repository.
 
 Debugging and ressources
 ========================
