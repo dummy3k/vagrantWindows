@@ -1,5 +1,4 @@
 #http://huestones.co.uk/node/305
-#https://www.vagrantup.com/docs/vagrantfile/winrm_settings.html
 
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -15,7 +14,7 @@ Vagrant.configure(2) do |config|
   config.vm.graceful_halt_timeout = 600
   config.vm.box_version = 0.2
   
-  # create user inside guest and make him admin
+  # https://www.vagrantup.com/docs/vagrantfile/winrm_settings.html
   config.winrm.username="IEUser"
   config.winrm.password="Passw0rd!"
   config.winrm.basic_auth_only=true

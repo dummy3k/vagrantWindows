@@ -20,11 +20,10 @@ These steps are only necessary once.
 
    - Network: To reduce unecessary chatter with the mothership set this to host only.
    - Clipboard/Drop & Drop Sharing
-
-    These steps are only necessary once.
     
-1. Make a snapshot "NotBootedYet"
-2. Install `vagrant`
+1. Make a snapshot "NotBootedYet".
+2. Install `vagrant`:
+    
     ```
     choco install vagrant
     ```
@@ -36,21 +35,24 @@ Repeat these steps to create a new [box][2].
 
 This will setup the VM so `vagrant` can administer it:
 
-1. Boot the VM for the first time
-1. open an administrative command prompt
+1. Reset the VM to the snapshot "NotBootedYet". 
+2. Boot the VM for the first time. The 90 days may start couting now.
+1. Open an administrative command prompt
    1. `notepad prep.cmd`
-   2. paste the content from `prep.cmd` from this git repository. This will configure `WinRM` to work nicely with `vagrant`.
-   3. save and run `prep.cmd`
+   2. Paste the content from `prep.cmd` from this git repository. This will configure `WinRM` to work nicely with `vagrant`.
+   3. Save and run `prep.cmd`.
 
    This will spew out a few errors but it did work for me.
-1. shutdown the VM. You might want to create a snapshot.
+1. Shutdown the VM. You might want to create a snapshot.
 2. Package the VM:
+
     ```
     vagrant package --base "MSEdge - Win10_preview" --output windows.box --vagrantfile BaseImage\Vagrantfile
     ```
     
     `MSEdge - Win10_preview` is the name of the image in VirtualBox.
 1. Import box:
+
     ```
     vagrant box add windows.box --name win10box
     ```
@@ -63,7 +65,7 @@ After all this work you can now easly spawn new VM:
 ```
     mkdir fooVM
     cd fooVM
-    vagrant init test001
+    vagrant init win10box 
     vagrant up
 ```
 
@@ -74,9 +76,9 @@ Debugging and ressources
 
 *  [Creating a Windows 10 Base Box for Vagrant with VirtualBox][4]
 
-WinRM/RS
---------
-To test the RCP you'll need to add the IP of the host to the Hypervisor:
+WinRM
+-----
+To test the `WinRM` RPC you'll need to add the IP of the guest VM to the Hypervisor:
 ```
 winrm set winrm/config/client @{TrustedHosts="192.168.56.101"}
 ```
