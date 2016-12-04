@@ -1,7 +1,7 @@
 Purpose
 =======
 
-This is a mixture between quide and docuemntion about how to quickly and easily create windows test vm's.
+This is a mixture between quide and docuemntion about how to quickly and easily create windows test VM's.
 
 In the beginning...
 ===================
@@ -36,7 +36,7 @@ Repeat these steps to create a new [box][2].
 This will setup the VM so `vagrant` can administer it:
 
 1. Reset the VM to the snapshot "NotBootedYet". 
-2. Boot the VM for the first time. The 90 days may start couting now.
+2. Boot the VM for the "first" time. The 90 days may start counting now.
 1. Open an administrative command prompt
    1. `notepad prep.cmd`
    2. Paste the content from `prep.cmd` from this git repository. This will configure `WinRM` to work nicely with `vagrant`.
@@ -63,13 +63,26 @@ Everyday life
 After all this work you can now easly spawn new VM:
 
 ```
-    mkdir fooVM
-    cd fooVM
-    vagrant init win10box 
-    vagrant up
+mkdir fooVM
+cd fooVM
+vagrant init win10box 
+vagrant up
 ```
 
-Have a look at the examples inside this git repository.
+You will want to modify the freshly generated `Vagrant` file to flauvor your new instance. Have a look at the examples inside this git repository.
+
+To reprovision the VM (this will recreate/delete the current VM):
+
+```
+vagrant halt
+```
+
+You might want to change `config.vm.box` inside the `Vagrant` file here.
+
+```
+vagrant destroy
+vagrant up
+```
 
 Debugging and ressources
 ========================
