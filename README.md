@@ -8,7 +8,7 @@ In the beginning...
 
 These steps are only necessary once.
 
-1. [Install Chocolatey][1]
+1. [Install Chocolatey][2]
 1. Install VirtualBox
     ```
     choco install virtualbox --version 5.1.10
